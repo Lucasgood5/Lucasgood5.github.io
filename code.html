@@ -7,21 +7,18 @@
         body {
             margin: 0;
             padding: 0;
+            background-color: #ddd;
         }
 
         .container {
-            margin: 10px;
-            position: relative;
-            width: 99%;
-            height: 99vh;
-            justify-content: center;
-            align-items: center;
+            width: 100%;
+            height: 100%;
         }
 
         .rectangle {
+            margin: auto;
+            margin-top: 10vh;
             width: 350px;
-            /* height: 500px; */
-            margin: 50px;
             background-color: #aaa;
             justify-content: center;
             align-items: center;
@@ -93,10 +90,9 @@
 
 <script>
     const CODE = [
-        ["-TIO-", "-IMG-", "-NON-", "-UZI-", "-YTB-", "-EEE-", "-VOS-", "-SLT-", "-EST-", "-RIO-"],
-        ["-POF-", "-SAH-", "-ELF-", "-ROH-", "-TOI-", "-ORF-", "-E!H-", "-SES-", "-NAH-",],
-        ["-CHO-", "-HOY-", "-QRC-", "-UVV-", "-OLM-", "-ELO-", "-!GG-", "-IST-", "-XXX-", "-♡♡♡-"]
-    ];
+        ["-OTI-", "-IMG-", "-NON-", "-IUZ-", "-BYT-", "-EEE-", "-VOS-", "-TSL-", "-EST-", "-RIO-",],
+        ["-FPO-", "-SAH-", "-ELF-", "-HRO-", "-TOI-", "-ORF-", "-HE!-", "-SSE-", "-NAH-",],
+        ["-CHO-", "-HOY-", "-CQR-", "-VUV-", "-OLM-", "-OEL-", "-G!G-", "-IST-", "-XXX-", "-♡♡♡-"]]
     const hintbox = document.querySelector('.hint-box');
 
     function codeOnClick(hint) {
@@ -105,6 +101,9 @@
             hint.style.backgroundColor = 'red';
         } else {
             hint.style.backgroundColor = 'blue';
+        }
+        if (hint.innerHTML == "- ♡ ♡ ♡ - ") {
+            hint.style.backgroundColor = "#f0a";
         }
         hint.style.color = 'white';
     }
@@ -129,6 +128,16 @@
             });
         }
         hintbox.appendChild(col);
+    }
+
+    function sha256(text) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(text);
+        return crypto.subtle.digest('SHA-256', data).then(buffer => {
+            const hashArray = Array.from(new Uint8Array(buffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            return hashHex;
+        });
     }
 </script>
 
