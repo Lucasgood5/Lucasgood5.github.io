@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rectangle with Centered Text Input</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 10px;
+            position: relative;
+            width: 99%;
+            height: 99vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .rectangle {
+            width: 350px;
+            /* height: 500px; */
+            margin: 50px;
+            background-color: #aaa;
+            justify-content: center;
+            align-items: center;
+            border: 10px solid black;
+        }
+
+        .hint-box {
+            margin: 10px;
+            /* padding: 10px; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .field-Row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .field-Col {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .hint {
+            margin: 5px;
+            padding: 5px;
+            background-color: #999;
+            border: 2.5px solid black;
+            border-radius: 10px;
+            width: 75px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .input-box {
+            margin: 10px;
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+        }
+
+        ::placeholder {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="rectangle">
+            <div class="hint-box">
+
+            </div>
+            <div class="input-box">
+                <input type="text" class="input" placeholder="TROUVEZ LE CODE">
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    const CODE = [
+        ["-TIO-", "-IMG-", "-NON-", "-UZI-", "-YTB-", "-EEE-", "-VOS-", "-SLT-", "-EST-", "-RIO-"],
+        ["-POF-", "-SAH-", "-ELF-", "-ROH-", "-TOI-", "-ORF-", "-E!H-", "-SES-", "-NAH-",],
+        ["-CHO-", "-HOY-", "-QRC-", "-UVV-", "-OLM-", "-ELO-", "-!GG-", "-IST-", "-XXX-", "-♡♡♡-"]
+    ];
+    const hintbox = document.querySelector('.hint-box');
+
+    function codeOnClick(hint) {
+        let currentColor = hint.style.backgroundColor;
+        if (currentColor != 'red') {
+            hint.style.backgroundColor = 'red';
+        } else {
+            hint.style.backgroundColor = 'blue';
+        }
+        hint.style.color = 'white';
+    }
+
+    for (let i = 0; i < CODE.length; i++) {
+        const col = document.createElement('div');
+        col.className = 'field-Col';
+        for (let j = 0; j < CODE[i].length; j++) {
+            const row = document.createElement('div');
+            row.className = 'field-Row';
+            const hint = document.createElement('div');
+            hint.className = 'hint';
+            let inhmtl = ""
+            for (let k = 0; k < CODE[i][j].length; k++) {
+                inhmtl += CODE[i][j][k] + " ";
+            }
+            hint.innerHTML = inhmtl;
+            row.appendChild(hint);
+            col.appendChild(row);
+            hint.addEventListener('click', () => {
+                codeOnClick(hint);
+            });
+        }
+        hintbox.appendChild(col);
+    }
+</script>
+
+</html>
