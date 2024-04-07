@@ -135,7 +135,7 @@
         }
         hint.style.color = 'white';
     }
-
+    let hints = [[], [], []]
     for (let i = 0; i < CODE.length; i++) {
         const col = document.createElement('div');
         col.className = 'field-Col';
@@ -154,9 +154,57 @@
             hint.addEventListener('click', () => {
                 codeOnClick(hint);
             });
+            hints[i][j] = hint;
         }
         hintbox.appendChild(col);
     }
+    let Bar = []
+    let IL = [23, 10, 4, 5, 3, 26, 0, 22, 13, 25, 7, 17, 16, 29]
+    for (let I of IL) {
+        Bar.push(hints[Math.floor(I / 10)][I % 10]);
+    }
+
+    let delta = 5000
+    function blinker() {
+        for (let i = 0; i < Bar.length; i++) {
+            let random = Math.floor(Math.random() * delta);
+            setTimeout(() => {
+                Bar[i].style.border = '2.5px solid white';
+            }, i * delta + random);
+            setTimeout(() => {
+                Bar[i].style.border = '2.5px solid black';
+            }, i * delta + 250 + random);
+        }
+    }
+    blinker();
+    setInterval(blinker, delta * 15)
+
+    function checkselect() {
+        let redflag = false
+        let blueflag = false
+        for (let i = 0; i < 29; i++) {
+            if (i == 19) i++
+            let S = IL.includes(i)
+            let hint = hints[Math.floor(i / 10)][i % 10]
+            if (hint.style.backgroundColor != 'red' && S) {
+                redflag = true
+            }
+            if (hint.style.backgroundColor != 'blue' && S) {
+                blueflag = true
+            }
+        }
+        if (redflag && blueflag) {
+            return false
+        }
+        return true
+    }
+    setInterval(() => {
+        let input = document.querySelector('.input');
+        if (checkselect()) {
+            input.style.backgroundColor = 'Red';
+            setTimeout(() => { input.style.backgroundColor = 'blue'; }, 500)
+        }
+    }, 1000)
 
     function sha256(text) {
         const encoder = new TextEncoder();
