@@ -5,11 +5,8 @@ const Slogan = [
     "d'autre slogan soonTM"
 ]
 
-console.log("autoSlogan.js loaded...")
 function changeSlogan() {
-    console.log("Changing slogan...");
     let sloganBoxs = document.getElementsByClassName("sloganBox");
-    console.log(sloganBoxs);
     for (let i = 0; i < sloganBoxs.length; i++) {
         let randomSlogan = Slogan[Math.floor(Math.random() * Slogan.length)];
         sloganBoxs[i].innerHTML = randomSlogan;
