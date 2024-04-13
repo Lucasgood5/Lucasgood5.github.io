@@ -18,8 +18,15 @@ const Slogan = [
     "Pour un compte qui s'envole,<br>Votez Girolle !",
     "Pour pas que la caisse dégringole,<br>Votez Girolle !",
     "Pour une ambiance folle,<br>Votez Girolle !",
+    "Fais pas de connerie,<br>Vote pour Gigi !",
 
     "Pour que ton alcool reste moins cher que le gazole, Vote Girolle !", //Merci Garf
+
+    // GPT-3
+    "Pour un tréso en or, votez Girolle sans effort.",
+    "Mettez Girolle à la tréso, pour des comptes plus beaux.",
+    "Pour des finances crescendo, votez Girolle en tréso.",
+    "Votez Girolle en tréso, pour des finances au top niveau."
 ]
 
 function changeSlogan() {
