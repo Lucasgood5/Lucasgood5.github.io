@@ -16,9 +16,9 @@ const Slogan = [
     //New OC
     "Pour une année sans chichi,<br>Votez pour Gigi !",
     "Pour un compte qui s'envole,<br>Votez Girolle !",
-    "Pour pas que la caisse dégringole,<br>Votez Girolle !",
+    "Pour pas que la caisse dégringolle,<br>Votez Girolle !",
     "Pour une ambiance folle,<br>Votez Girolle !",
-    "Fais pas de connerie,<br>Vote pour Gigi !",
+    "Fais pas de conneries,<br>Vote pour Gigi !",
 
     "Pour que ton alcool reste moins cher que le gazole, Vote Girolle !", //Merci Garf
 
