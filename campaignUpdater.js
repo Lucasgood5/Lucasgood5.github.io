@@ -1,6 +1,6 @@
 let div2024 = document.getElementById("2024div");
 let now = new Date();
-// let now = createDate(20, 17)
+// let now = createDate(27, 17)
 const soonTM = `Un autre indice arrive bientot !`
 const Text = [
     ["Pour un tréso a tout péter, votez Girolle sans hésiter !", "Vous êtes plutôt team barbie ? Alors votez Gigi !"],
@@ -8,8 +8,8 @@ const Text = [
     ["Il est aussi bon derrière une caisse que dedans,<br>Votez Girolle c'est le meilleur plan !", "Pas fan des bébés ?<br>Vous préférez les gens experimentés ?<br>Alors votez Girolle, votre nouveau trésorier."],
     ["Pour décrocher l'or des jeux olympiques,<br>Ajoutez Girolle a l'équipe !", "Vous n'aimez pas la criminalité ?<br>Votez Girolle en trésorier !<br>Avec lui impossible de frauder !<br>La caisse sera en sécurité !"],
     ["Avec Girolle en trésorier,<br>Il y a rien a négocier !<br> Pour rentrer, il faut payer !", "Pas fan des douaniers ?<br>Votez Girolle votre contrebandier !"],
-    ["Pour une innondation de billet,<br> c'est Girolle qu'il faut votez !", "Vous n'aimez pas la pluie ?<br>Alors pour une belle météo,<br>Votez Girolle en tréso !"],
-    ["Pour gagnez des millions, votez pour le champignon !", "Vous préférez ne rien perdre ?<br>Alors pour une caisse bien géré,<br>Votez Girolle, votre trésorier préféré !"],
+    ["Pour une innondation de billets,<br> c'est Girolle qu'il faut votez !", "Vous n'aimez pas la pluie ?<br>Alors pour une belle météo,<br>Votez Girolle en tréso !"],
+    ["Pour gagnez des millions, votez pour le champignon !", "Vous préférez ne rien perdre ?<br>Alors pour une caisse bien gérée,<br>Votez Girolle, votre trésorier préféré !"],
 ]
 const Dates = [
     createDate(15, 14),
