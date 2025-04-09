@@ -182,7 +182,7 @@ AllLevels.set(2, {
     ],
 });
 
-AllLevels.set(1, {
+AllLevels.set(3, {
     "lvlHeight": 15,
     "lvlWidth": 15,
     "WallMap": [
