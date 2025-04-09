@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Grid Generator</title>
+    <link rel="stylesheet" href="lvlgenerator.css">
+</head>
+
+<body>
+    <h1>Level Grid Generator</h1>
+    <label for="width">Width:</label>
+    <input type="number" id="width" min="1" value="5">
+    <label for="height">Height:</label>
+    <input type="number" id="height" min="1" value="5">
+    <div id="grid"></div>
+    <button id="copyButton">Copy JSON</button>
+    <pre id="output"></pre>
+
+
+    <script>
+        document.getElementById('copyButton').addEventListener('click', () => {
+            const output = document.getElementById('output').textContent;
+            navigator.clipboard.writeText(output).then(() => {
+                alert('JSON copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy JSON: ', err);
+            });
+        });
+    </script>
+
+    <script>
+
+        function generateGrid() {
+            const width = parseInt(document.getElementById('width').value);
+            const height = parseInt(document.getElementById('height').value);
+            const grid = document.getElementById('grid');
+            grid.style.gridTemplateColumns = `repeat(${width}, 20px)`;
+            grid.innerHTML = '';
+
+            for (let row = 0; row < height; row++) {
+                for (let col = 0; col < width; col++) {
+                    const cell = document.createElement('div');
+                    let type = "coin";
+                    if (row == 0 || row == height - 1 || col == 0 || col == width - 1) {
+                        type = "wall";
+                    }
+                    cell.classList.add('cell', type);
+                    cell.dataset.row = row;
+                    cell.dataset.col = col;
+                    cell.addEventListener('click', () => toggleCellState(cell));
+                    grid.appendChild(cell);
+                }
+            }
+        }
+
+        function toggleCellState(cell) {
+            if (cell.classList.contains('empty')) {
+                cell.classList.remove('empty');
+                cell.classList.add('coin');
+            } else if (cell.classList.contains('wall')) {
+                cell.classList.remove('wall');
+                cell.classList.add('special');
+            } else if (cell.classList.contains('coin')) {
+                cell.classList.remove('coin');
+                cell.classList.add('wall');
+            } else if (cell.classList.contains('special')) {
+                cell.classList.remove('special');
+                cell.classList.add('empty');
+            }
+            exportJSON();
+        }
+
+        function exportJSON() {
+            const grid = document.getElementById('grid');
+            const cells = grid.querySelectorAll('.cell');
+            const width = parseInt(document.getElementById('width').value);
+            const height = parseInt(document.getElementById('height').value);
+
+            const wallMap = Array.from({ length: height }, () => Array(width).fill(0));
+            const collectables = [];
+            const special = [];
+
+            cells.forEach(cell => {
+                const row = parseInt(cell.dataset.row);
+                const col = parseInt(cell.dataset.col);
+
+                if (cell.classList.contains('wall')) {
+                    wallMap[row][col] = 1;
+                } else if (cell.classList.contains('coin')) {
+                    collectables.push({ type: 'coin', row, col });
+                } else if (cell.classList.contains('special')) {
+                    collectables.push({ type: 'special', row, col });
+                }
+            });
+            special.forEach(cell => {
+                const row = parseInt(cell.dataset.row);
+                const col = parseInt(cell.dataset.col);
+                collectables.unshift({ type: 'special', row, col });
+            });
+
+            const output = {
+                lvlHeight: height,
+                lvlWidth: width,
+                WallMap: wallMap,
+                CollictablesToSpawnList: collectables
+            };
+
+            let text = JSON.stringify(output, null, 4);
+            text = text.replace(/(\[\s*)(\d+,\s*)+(\d+\s*\])/g, match => {
+                return match.replace(/\s+/g, '').replace(/,/g, ', ');
+            });
+            document.getElementById('output').textContent = text;
+        }
+
+        document.getElementById('width').addEventListener('change', generateGrid);
+        document.getElementById('height').addEventListener('change', generateGrid);
+        generateGrid();
+    </script>
+</body>
+
+</html>
