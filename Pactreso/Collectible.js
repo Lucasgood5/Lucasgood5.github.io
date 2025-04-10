@@ -5,6 +5,8 @@ img.deuxeuro = new Image();
 img.deuxeuro.src = "./Images/2euro.png"; // Ensure the correct path to the image
 img.beer = new Image();
 img.beer.src = "./Images/beer.png"; // Ensure the correct path to the image
+img.dixeuro = new Image();
+img.dixeuro.src = "./Images/10euro.png"; // Ensure the correct path to the image
 
 class Collectible {
     static ImagesCache = new Map();
@@ -95,10 +97,58 @@ class Beer extends Collectible {
         super(stage, "beer", x, y);
         this.image = img.beer;
         this.size = 0.85
+        this.notNeeded = true; // This collectible is not needed to win the game
     }
 
     onCollect(pacman) {
         this.collected = true;
         pacman.boost();
+    }
+}
+
+class Cherry extends Collectible {
+    constructor(stage, x, y, value = 10) {
+        super(stage, "cherry", x, y);
+        this.image = img.dixeuro;
+        this.size = 0.9
+        this.value = value;
+        this.notNeeded = false
+        this.spawnTime = Date.now();
+    }
+
+    onCollect(pacman) {
+        this.collected = true;
+        this.stage.gainScore(this.value);
+    }
+
+    draw(ctx) {
+        if (this.collected) return;
+        let size = this.stage.getDisplaySettings().tileSize * (this.size || 1)
+        let timeSinceSpawn = Date.now() - this.spawnTime;
+        // if the collectible is younger than 2 seconds, draw it blinking
+        if (timeSinceSpawn < 1500) {
+            ctx.globalAlpha = Math.abs(Math.sin(timeSinceSpawn / 100)); // Blink effect
+        } else {
+            ctx.globalAlpha = 1; // Reset opacity after 2 seconds
+        }
+        // Also, if the collectible is older than 8 seconds, draw it fading out
+        if (timeSinceSpawn > 7500) {
+            ctx.globalAlpha = 1 - ((timeSinceSpawn - 7500) / 2500)
+        }
+        if (timeSinceSpawn > 10000) {
+            this.collected = true; // Remove the collectible after 10 seconds
+            return
+        }
+
+        if (!this.image) {
+            return;
+        }
+        try {
+            ctx.drawImage(this.image, this.x - size / 2, this.y - size / 2, size, size);
+        } catch (e) {
+            console.error(e);
+        } finally {
+            ctx.globalAlpha = 1; // Reset opacity after drawing
+        }
     }
 }

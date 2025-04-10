@@ -139,6 +139,13 @@ class Stage {
         if (this.isWon()) {
             this.gameHandler.nextLevel();
         }
+
+        // About every 5 seconds, try spawn a cherry
+        this.lastCherrySpawn = this.lastCherrySpawn || 0;
+        if (now - this.lastCherrySpawn > 5000) {
+            this.spawnACherry({ luck: 0.3 });
+            this.lastCherrySpawn = now;
+        }
     }
 
     isWon() {
@@ -216,5 +223,15 @@ class Stage {
                 this.gameHandler.GameOverScreen();
             }
         }
+    }
+
+    spawnACherry({ luck = 1 }) {
+        if (Math.random() > luck) return;
+        let collected = this.Collictables.filter(c => c.collected);
+        let random_collected = collected[Math.floor(Math.random() * collected.length)];
+        if (!random_collected) return;
+        let x = random_collected.x;
+        let y = random_collected.y;
+        this.Collictables.push(new Cherry(this, x, y, 10));
     }
 }
