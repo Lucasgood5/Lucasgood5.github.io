@@ -29,6 +29,38 @@ const Slogan = [
     "Votez Girolle en tréso, pour des finances au top niveau."
 ]
 
+class VariableSlogan {
+    constructor(duration = 5) {
+        this.duration = duration * 1000; // Convert to milliseconds
+        this.last = undefined;
+        this.since = 0;
+        this.change();
+    }
+
+    needToChange() {
+        let now = new Date().getTime();
+        if (now - this.since > this.duration) {
+            return true;
+        }
+        return false;
+    }
+
+    change() {
+        let newRandom = Slogan[Math.floor(Math.random() * Slogan.length)];
+        while (newRandom == this.last) {
+            newRandom = Slogan[Math.floor(Math.random() * Slogan.length)];
+        }
+        this.last = newRandom;
+        this.since = new Date().getTime();
+    }
+
+    getCurrent() {
+        if (this.needToChange()) this.change();
+        return this.last;
+    }
+}
+
+// Retro compatibility
 function changeSlogan() {
     let sloganBoxs = document.getElementsByClassName("sloganBox");
     for (let i = 0; i < sloganBoxs.length; i++) {
@@ -36,5 +68,3 @@ function changeSlogan() {
         sloganBoxs[i].innerHTML = randomSlogan;
     }
 }
-
-window.onload = setInterval(changeSlogan, 5000);

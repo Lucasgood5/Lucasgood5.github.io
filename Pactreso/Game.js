@@ -11,6 +11,7 @@ class GameHandler {
 
         this.nextFrame();
         AttachControlsToGameHandler(this);
+        this.variableSlogan = new VariableSlogan(5);
     }
 
     startNewGame() {
@@ -57,6 +58,10 @@ class GameHandler {
         ctx.textAlign = "left";
         ctx.fillText("Niveau : " + this.lvl, 10, 20);
         ctx.fillText("Score : " + Math.floor(this.score), 10, 40);
+
+        //center horizontally
+        ctx.textAlign = "center";
+        ctx.fillText(this.variableSlogan.getCurrent().replaceAll("<br>", " "), this.canvas.width / 2, this.canvas.height - 20);
     }
 
     drawGameOver() {
