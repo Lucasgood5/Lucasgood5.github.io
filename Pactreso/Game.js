@@ -11,7 +11,7 @@ class GameHandler {
 
         this.nextFrame();
         AttachControlsToGameHandler(this);
-        this.variableSlogan = new VariableSlogan(5);
+        this.variableSlogan = new VariableSlogan(10);
     }
 
     startNewGame() {

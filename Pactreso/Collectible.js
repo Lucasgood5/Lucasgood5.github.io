@@ -74,7 +74,6 @@ class Coin extends Collectible {
     constructor(stage, x, y, coinvalue = 1) {
         super(stage, "coin", x, y);
         this.coinvalue = coinvalue;
-        console.log("Coin value: ", coinvalue);
         if (coinvalue == 1) {
             this.image = img.uneuro;
             this.size = 0.75

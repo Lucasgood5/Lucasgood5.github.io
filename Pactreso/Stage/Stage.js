@@ -61,6 +61,8 @@ class Stage {
             let C = Collectible.buildFromType(collictable.type, this, coordinate.x, coordinate.y, ...(collictable.args || []));
             this.Collictables.push(C);
         }
+
+        this.created = new Date().getTime();
     }
 
     getCanvas() {
@@ -120,6 +122,7 @@ class Stage {
     }
 
     update() {
+        if (this.created + 3000 > new Date().getTime()) return
         let now = Date.now();
         if (!this.lastUpdate) this.lastUpdate = now;
         let dT = now - this.lastUpdate;
@@ -171,6 +174,7 @@ class Stage {
         for (let ghost of this.Ghosts) {
             ghost.draw(ctx);
         }
+        this.drawStartingCountdown()
     }
 
     drawWall(ctx) {
@@ -193,6 +197,17 @@ class Stage {
         } catch (e) {
             console.error(e);
         }
+    }
+
+    drawStartingCountdown() {
+        let startIn = Math.floor((this.created + 3000 - new Date().getTime()) / 1000) + 1;
+        if (startIn < 1) return;
+        let ctx = this.getCanvas().getContext("2d");
+        // ctx.clearRect(0, 0, this.getCanvas().width, this.getCanvas().height);
+        ctx.fillStyle = "white";
+        ctx.font = "50px Arial bold";
+        ctx.textAlign = "center";
+        ctx.fillText("Start in " + startIn, this.getCanvas().width / 2, 50);
     }
 
     gainScore(delta) {

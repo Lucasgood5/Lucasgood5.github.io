@@ -91,9 +91,6 @@ class RandomPathfindingStrategy extends PathfindingStrategy {
         if (forwardness < 0 || forwardness > 1) {
             throw new Error("forwardness must be between 0 and 1");
         }
-        if (forwardness < 0.9) {
-            console.warn("A forwardness of less than 0.9 is not recommended");
-        }
         this.forwardness = forwardness;
     }
 
