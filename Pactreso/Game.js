@@ -134,12 +134,13 @@ class GameHandler {
             }
             ctx.fillText(scoreboard[i - playerscoreDrawn].username + " : " + scoreboard[i - playerscoreDrawn].score, this.canvas.width / 2, this.canvas.height / 4 + (i + 1) * 30);
         }
+        if (!playerscoreDrawn) {
+            ctx.fillStyle = "yellow";
+            let username = getUsernameInput().value || "???";
+            let score = Math.floor(this.score);
+            ctx.fillText(username + " : " + score, this.canvas.width / 2, this.canvas.height / 4 + (scoreboard.length + 2) * 30);
+        }
 
-        // let username = getUsernameInput().value || "???";
-        // let score = Math.floor(this.score);
-        // let vous = "Vous :"
-        // ctx.fillText(vous, this.canvas.width / 2, this.canvas.height / 4 + scoreboard.length * 30);
-        // ctx.fillText(username + " : " + score, this.canvas.width / 2, this.canvas.height / 4 + (scoreboard.length + 1) * 30);
         ctx.fillText("Appuyez sur une touche pour recommencer", this.canvas.width / 2, this.canvas.height * 3 / 4);
     }
 
