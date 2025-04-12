@@ -124,10 +124,12 @@ class GameHandler {
         let scoreboard = this.getScoreboard();
         for (let i = 0; i < scoreboard.length; i++) {
             if (scoreboard[i].score < this.score && !playerscoreDrawn) {
+                ctx.fillStyle = "yellow";
                 let username = getUsernameInput().value || "???";
                 let score = Math.floor(this.score);
                 ctx.fillText(username + " : " + score, this.canvas.width / 2, this.canvas.height / 4 + (i + 1) * 30);
                 playerscoreDrawn = true;
+                ctx.fillStyle = "white";
                 continue;
             }
             ctx.fillText(scoreboard[i - playerscoreDrawn].username + " : " + scoreboard[i - playerscoreDrawn].score, this.canvas.width / 2, this.canvas.height / 4 + (i + 1) * 30);
