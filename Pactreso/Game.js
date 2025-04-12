@@ -84,7 +84,7 @@ class GameHandler {
         this.scoreboardLastUpdate = this.scoreboardLastUpdate || 0;
         if (this.scoreboardLastUpdate + REFRESH_RATE * 1000 < Date.now()) {
             retrieveLeaderboard().then((data) => {
-                this.scoreboard = data;
+                this.scoreboard = data || [];
                 this.scoreboard.sort((a, b) => b.score - a.score);
             }).catch((err) => {
                 console.error("Error retrieving leaderboard", err);
@@ -121,7 +121,7 @@ class GameHandler {
         ctx.fillText("Meilleurs scores", this.canvas.width / 2, this.canvas.height / 4);
 
         let playerscoreDrawn = false;
-        let scoreboard = this.getScoreboard();
+        let scoreboard = this.getScoreboard() || [];
         for (let i = 0; i < scoreboard.length; i++) {
             if (scoreboard[i].score < this.score && !playerscoreDrawn) {
                 ctx.fillStyle = "yellow";

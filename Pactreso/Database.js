@@ -12,6 +12,9 @@ async function retrieveLeaderboard() {
 }
 
 async function addScoreToLeaderboard(username, score) {
+    if (score <= 0) return;
+    if (!username) return;
+    if (username == "???") return;
     const response = await fetch("https://pactreso-f8ca.restdb.io/rest/leaderboard", {
         method: "POST",
         headers: {
