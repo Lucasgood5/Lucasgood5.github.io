@@ -72,13 +72,12 @@ class Ghost extends MobileEntity {
             return;
         }
         try {
+            if (this.isDead) ctx.globalAlpha = 0.5;
             ctx.drawImage(this.image, this.x - tileSize / 2, this.y - tileSize / 2, tileSize, tileSize);
         } catch (e) {
             console.error(e);
-        }
-        if (this.isDead) {
-            ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
-            ctx.fillRect(this.x - tileSize / 2, this.y - tileSize / 2, tileSize, tileSize);
+        } finally {
+            ctx.globalAlpha = 1.0;
         }
 
         // this.drawDebug(ctx);

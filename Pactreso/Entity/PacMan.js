@@ -42,13 +42,8 @@ class PacMan extends MobileEntity {
     // Méthode de dessin : on centre l'image sur (this.x, this.y)
     draw(ctx) {
         let ts = this.stage.getDisplaySettings().tileSize;
-
+        if (this.isBoosted) this.drawIsBoostedEffect(ctx);
         ctx.drawImage(this.image, this.x - ts / 2, this.y - ts / 2, ts, ts);
-
-        if (this.isBoosted) {
-            ctx.fillStyle = "rgba(255, 255, 0, 0.5)";
-            ctx.fillRect(this.x - ts / 2, this.y - ts / 2, ts, ts);
-        }
         // this.DEBUG_drawMobilityInfo(ctx)
     }
 
@@ -58,5 +53,28 @@ class PacMan extends MobileEntity {
         setTimeout(() => {
             this.isBoosted = false;
         }, 15000);
+    }
+
+    drawIsBoostedEffect(ctx) {
+        if (!this.isBoosted) return;
+        let ts = this.stage.getDisplaySettings().tileSize;
+        let boostDurationPercentLeft = 1 - (Date.now() - this.boostStartTimestamp) / 15000;
+
+        // Draw some line/ray around PacMan
+
+        for (let line_I = 0; line_I < boostDurationPercentLeft * 5; line_I++) {
+            let randAngle = Math.random() * 2 * Math.PI;
+            let lineLength = Math.random() * ts * (boostDurationPercentLeft + 1) / 2
+            let lineX = Math.cos(randAngle) * lineLength;
+            let lineY = Math.sin(randAngle) * lineLength;
+            ctx.beginPath();
+            ctx.moveTo(this.x, this.y);
+            ctx.lineTo(this.x + lineX, this.y + lineY);
+            ctx.strokeStyle = "rgba(255, 255, 0, 1)";
+            ctx.lineWidth = Math.random() * 5;
+            ctx.stroke();
+            ctx.closePath();
+        }
+
     }
 }
