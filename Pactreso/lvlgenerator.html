@@ -15,6 +15,15 @@
     <label for="height">Height:</label>
     <input type="number" id="height" min="1" value="5">
     <div id="grid"></div>
+    <div id="elementSelector" class="toolbar">
+        <button data-type="wall">🧱 Wall</button>
+        <button data-type="coin" class="active">🪙 Coin</button>
+        <button data-type="coin2" class="active">🪙 Coin 2</button>
+        <button data-type="beer">✨ beer</button>
+        <button data-type="empty">❌ Empty</button>
+        <button data-type="special">⭐ Special</button>
+    </div>
+
     <button id="copyButton">Copy JSON</button>
     <pre id="output"></pre>
 
@@ -56,19 +65,8 @@
         }
 
         function toggleCellState(cell) {
-            if (cell.classList.contains('empty')) {
-                cell.classList.remove('empty');
-                cell.classList.add('coin');
-            } else if (cell.classList.contains('wall')) {
-                cell.classList.remove('wall');
-                cell.classList.add('special');
-            } else if (cell.classList.contains('coin')) {
-                cell.classList.remove('coin');
-                cell.classList.add('wall');
-            } else if (cell.classList.contains('special')) {
-                cell.classList.remove('special');
-                cell.classList.add('empty');
-            }
+            cell.classList.remove('wall', 'coin', 'special', 'empty', 'coin2', 'beer');
+            cell.classList.add(currentElementType);
             exportJSON();
         }
 
@@ -92,6 +90,10 @@
                     collectables.push({ type: 'coin', row, col });
                 } else if (cell.classList.contains('special')) {
                     collectables.push({ type: 'special', row, col });
+                } else if (cell.classList.contains('coin2')) {
+                    collectables.push({ type: 'coin', row, col, args: [2] })
+                } else if (cell.classList.contains('beer')) {
+                    collectables.push({ type: 'beer', row, col });
                 }
             });
             special.forEach(cell => {
@@ -117,6 +119,19 @@
         document.getElementById('width').addEventListener('change', generateGrid);
         document.getElementById('height').addEventListener('change', generateGrid);
         generateGrid();
+
+        let currentElementType = 'coin'; // Default
+
+        document.querySelectorAll('#elementSelector button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update current type
+                currentElementType = btn.dataset.type;
+
+                // Highlight active button
+                document.querySelectorAll('#elementSelector button').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
     </script>
 </body>
 

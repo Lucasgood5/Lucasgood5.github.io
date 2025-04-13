@@ -58,6 +58,14 @@ input[type="number"] {
     background-color: #f00;
 }
 
+.cell.beer {
+    background-color: #0f0;
+}
+
+.cell.coin2 {
+    background-color: #f60;
+}
+
 
 button {
     display: block;
@@ -83,4 +91,24 @@ pre {
     overflow-x: auto;
     max-width: 90%;
     margin: 20px auto;
+}
+
+.toolbar {
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.toolbar button {
+    padding: 5px 10px;
+    border: 2px solid #ccc;
+    background-color: #333;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.toolbar button.active {
+    border-color: #007bff;
+    background-color: #444;
 }
