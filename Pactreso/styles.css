@@ -19,9 +19,27 @@ body {
 #gameContainer {
     display: inline-block;
     aspect-ratio: 1 / 1;
-    max-width: 80%;
-    max-height: 70vh;
-    position: relative;
+    max-width: 80vw;
+    max-height: 65vh;
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+#controls {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+#usernameInput {
+    position: fixed;
+    top: 10%;
+    transform: translate(-50%, -100%);
+
 }
 
 canvas {
