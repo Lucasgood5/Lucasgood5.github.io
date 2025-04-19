@@ -1,0 +1,139 @@
+/* Canvas Styling */
+#gameCanvas {
+    background-color: #000;
+    border: 5px solid #000;
+    display: block;
+    margin: auto;
+    max-width: 100vw;
+    width: 80%;
+    aspect-ratio: 16/9;
+}
+
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+h3 {
+    color: #444;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Input Div Styling */
+#InputDiv {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#InputDiv input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    width: 250px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#InputDiv button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#InputDiv button:hover {
+    background-color: #0056b3;
+}
+
+/* Section Styling */
+div[id$="Inputs"] {
+    margin: 20px auto;
+    padding: 15px;
+    width: 80%;
+    max-width: 600px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+div[id$="Inputs"] label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+div[id$="Inputs"] input[type="text"],
+div[id$="Inputs"] input[type="number"],
+div[id$="Inputs"] textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+div[id$="Inputs"] textarea {
+    resize: none;
+}
+
+div[id$="Inputs"] button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+div[id$="Inputs"] button:hover {
+    background-color: #218838;
+}
+
+/* Dynamic List Styling */
+#attributesList div,
+#capacitiesList div {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#attributesList div label,
+#capacitiesList div label {
+    display: inline-block;
+    width: 80px;
+    font-weight: bold;
+}
+
+#attributesList div input,
+#capacitiesList div input {
+    width: calc(100% - 90px);
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Story Section Styling */
+#storyInputs textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}

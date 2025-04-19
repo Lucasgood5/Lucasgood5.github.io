@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pac-Man</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas" width="1920" height="1080"></canvas>
+    </div>
+    <!-- <div id="InputDiv">
+        <input type="text" id="playerName" placeholder="Entrez votre nom" maxlength="20">
+        <button id="startButton">Jouer</button>
+    </div> -->
+
+    <!-- Dynamic Inputs for Background -->
+    <div id="backgroundInputs">
+        <h3>Changer l'arrière-plan</h3>
+        <label for="backgroundImage">Image d'arrière-plan :</label>
+        <input type="text" id="backgroundImage" placeholder="URL de l'image">
+    </div>
+
+    <div id="charcterInputs">
+        <h3>Modifier les personnages</h3>
+        <label for="characterImage">Image du personnage 1 :</label>
+        <input type="text" id="characterImage1" placeholder="URL de l'image du personnage 1">
+        <label for="characterImage">Image du personnage 2 :</label>
+        <input type="text" id="characterImage2" placeholder="URL de l'image du personnage 2">
+        <label for="characterImage">Image du personnage 3 :</label>
+        <input type="text" id="characterImage3" placeholder="URL de l'image du personnage 3">
+    </div>
+
+    <!-- Dynamic Inputs for Attributes -->
+    <div id="attributesInputs">
+        <h3>Modifier les Attributs</h3>
+        <div id="attributesList">
+            <!-- Attributes will be dynamically populated here -->
+        </div>
+        <!-- <button id="addAttribute" onclick="addAttribute()">Ajouter un Attribut</button> -->
+    </div>
+
+    <!-- Dynamic Inputs for Capacities -->
+    <div id="capacitiesInputs">
+        <h3>Modifier les Capacités</h3>
+        <div id="capacitiesList">
+            <!-- Capacities will be dynamically populated here -->
+        </div>
+        <!-- <button id="addCapacity" onclick="addCapacity()">Ajouter une Capacité</button>Ajouter une Capacité</button> -->
+    </div>
+
+    <!-- Dynamic Inputs for Story -->
+    <div id="storyInputs">
+        <h3>Modifier l'Histoire</h3>
+        <textarea id="storyText" rows="10" cols="50" placeholder="Entrez l'histoire ici..."></textarea>
+    </div>
+
+    <!-- Inclusion des fichiers JavaScript dans l'ordre -->
+    <script src="./constants.js"></script>
+    <script src="./draw-utils.js"></script>
+
+    <script src="./backgroundDrawer.js"></script>
+    <script src="./attributesDrawer.js"></script>
+    <script src="./capacitiesDrawer.js"></script>
+    <script src="./storyDrawer.js"></script>
+
+    <script src="./updater.js"></script>
+
+    <script>
+
+        // Example: Populate attributes dynamically
+        const attributes = getAttributesArray();
+        const attributesList = document.getElementById('attributesList');
+        attributes.forEach((attr, index) => {
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <label>Nom :</label>
+                <input type="text" value="${attr.name}" id="attrName${index}">
+                <label>Valeur :</label>
+                <input type="number" value="${attr.value}" id="attrValue${index}">
+                <label>Description :</label>
+                <input type="text" value="${attr.description}" id="attrDesc${index}">
+            `;
+            attributesList.appendChild(div);
+        });
+
+        // Example: Populate capacities dynamically
+        const capacities = getCapacities();
+        const capacitiesList = document.getElementById('capacitiesList');
+        capacities.forEach((cap, index) => {
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <label>Nom :</label>
+                <input type="text" value="${cap.name}" id="capName${index}">
+                <label>Effet :</label>
+                <input type="text" value="${cap.effet}" id="capEffect${index}">
+                <label>Description :</label>
+                <input type="text" value="${cap.description}" id="capDesc${index}">
+                <label>Rouge ou Bleu :</label>
+                <select id="capColor${index}">
+                    <option value="rouge" ${cap.colorSet == ColorSet.RED ? 'selected' : ''}>Rouge</option>
+                    <option value="bleu" ${cap.colorSet == ColorSet.BLUE ? 'selected' : ''}>Bleu</option>
+                </select>
+            `;
+            capacitiesList.appendChild(div);
+        });
+
+        // Example: Update story dynamically
+        const storyText = document.getElementById('storyText');
+        storyText.value = getStory();
+
+        function addAttribute() {
+            const newAttr = {
+                name: 'Nouvel Attribut',
+                value: 0,
+                description: 'Description de l\'attribut'
+            };
+            attributes.push(newAttr);
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <label>Nom :</label>
+                <input type="text" value="${newAttr.name}">
+                <label>Valeur :</label>
+                <input type="number" value="${newAttr.value}">
+                <label>Description :</label>
+                <input type="text" value="${newAttr.description}">
+            `;
+            attributesList.appendChild(div);
+        }
+
+        function addCapacity() {
+            const newCap = {
+                name: 'Nouvelle Capacité',
+                effet: 'Effet de la capacité',
+                description: 'Description de la capacité',
+                colorSet: ColorSet.RED
+            };
+            capacities.push(newCap);
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <label>Nom :</label>
+                <input type="text" value="${newCap.name}">
+                <label>Effet :</label>
+                <input type="text" value="${newCap.effet}">
+                <label>Description :</label>
+                <input type="text" value="${newCap.description}">
+                <label>Rouge ou Bleu :</label>
+                <select>
+                    <option value="rouge">Rouge</option>
+                    <option value="bleu">Bleu</option>
+                </select>
+            `;
+            capacitiesList.appendChild(div);
+        }
+
+    </script>
+</body>
+
+</html>
