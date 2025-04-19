@@ -1,5 +1,7 @@
 const AllLevels = new Map();
 const ghostbaseImage = new Image();
+const eastereggImage = new Image();
+eastereggImage.src = "./Images/easteregg.png";
 ghostbaseImage.src = "./Images/chalet.png";
 
 class Stage {
@@ -175,6 +177,12 @@ class Stage {
             ghost.draw(ctx);
         }
         this.drawStartingCountdown()
+
+        if (this.gameHandler.lvl % 3 == 0) {
+            let { tileSize, offsetX, offsetY } = this.getDisplaySettings();
+            // At the right bottom tile, draw the easter egg
+            ctx.drawImage(eastereggImage, offsetX + (this.lvlWidth - 1) * tileSize, offsetY + (this.lvlHeight - 1) * tileSize, tileSize, tileSize);
+        }
     }
 
     drawWall(ctx) {

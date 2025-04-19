@@ -311,17 +311,6 @@ AllLevels.set(3, {
 
 });
 
-// let lvl = AllLevels.get(1);
-// let CollictablesToSpawnList = []
-// for (let i = 0; i < 13; i++) {
-//     for (let j = 0; j < 13; j++) {
-//         if (lvl.WallMap[i][j] === 0) {
-//             CollictablesToSpawnList.push({ type: "coin", col: j, row: i });
-//         }
-//     }
-// }
-// console.log(CollictablesToSpawnList);
-
 AllLevels.set(4, {
     "lvlHeight": 17,
     "lvlWidth": 17,
