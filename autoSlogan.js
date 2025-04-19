@@ -13,7 +13,7 @@ const Slogan = [
     "Fais pas le mariole,<br>Vote pour Girolle",
     "Pour un trésorier qui donne tout,<br>Votez Girolle, votre meilleur atout !",
 
-    //New OC
+    //OC 24
     "Pour une année sans chichi,<br>Votez pour Gigi !",
     "Pour un compte qui s'envole,<br>Votez Girolle !",
     "Pour pas que la caisse dégringolle,<br>Votez Girolle !",
@@ -26,7 +26,13 @@ const Slogan = [
     "Pour un tréso en or, votez Girolle sans effort.",
     "Mettez Girolle à la tréso, pour des comptes plus beaux.",
     "Pour des finances crescendo, votez Girolle en tréso.",
-    "Votez Girolle en tréso, pour des finances au top niveau."
+    "Votez Girolle en tréso, pour des finances au top niveau.",
+
+    //OC 25
+    "Pour un tréso prêt à tout,<br>Votez Girolle votre meilleur atout !",
+    "Pour un tréso prêt pour tout,<br>Votez Girolle, votre meilleur atout !",
+    "Pour un tréso qui déchire,<br>Votez Girolle, c'est pas délire !",
+
 ]
 
 class VariableSlogan {
