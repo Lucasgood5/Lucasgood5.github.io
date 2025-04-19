@@ -171,7 +171,9 @@ class GameHandler {
 
     nextLevel() {
         this.LoadLevel(this.lvl + 1);
-        this.getScoreboard();
+        if (this.lvl > 2) {
+            this.getScoreboard();
+        }
     }
 }
 

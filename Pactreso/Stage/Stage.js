@@ -216,6 +216,7 @@ class Stage {
 
     gameOver(killer) {
         this.gameOverStartTimestamp = Date.now();
+        this.gameHandler.getScoreboard()
         this.draw = () => {
             let ctx = this.getCanvas().getContext("2d");
             ctx.clearRect(0, 0, this.getCanvas().width, this.getCanvas().height);
