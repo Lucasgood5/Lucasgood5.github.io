@@ -1,6 +1,6 @@
-const DEFAULT_STORY = `Lucas fut baptisé en 2019 en FMM en tant que "Girolle".
+const DEFAULT_STORY = `Lucas fut baptisé FMM en 2019 au nom de "Girolle".
 Cette année fut maudite par le Covid l'empêchant de s'investir.
-Cependant, dès la fin du confinement en 21, il rejoignit le Café Male.
+Cependant, dès la fin du confinement en 21, il rejoignit le Café Mâle.
 Mais cela ne lui suffisait pas, il voulait s'investir encore plus.
 
 Alors en 2022 quand la FCA fut créée, il se proposa pour la trésorerie.
@@ -15,9 +15,9 @@ A défaut d'une toge, il se proposa pour être condé pour la bleusaille.
 Lors du triste besoin d'un nouveau secretaire Fronta, il repondit.
 
 Et aujourd'hui il est de toujours prêt à s'investir pour la FMM.
-Il se presente humblement pour le poste de trésorier de la FMM 25.
+Il se présente humblement pour le poste de trésorier de la FMM 25.
 
-Reussira t'il ça quête ? A vous de le décider !
+Réussira t'il sa quête ? A vous de le décider !
 `
 
 function getStory() {

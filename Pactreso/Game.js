@@ -133,6 +133,7 @@ class GameHandler {
                 continue;
             }
             ctx.fillText(scoreboard[i - playerscoreDrawn].username + " : " + scoreboard[i - playerscoreDrawn].score, this.canvas.width / 2, this.canvas.height / 4 + (i + 1) * 30);
+            if (i == 9) break; // only draw top 10 scores
         }
         if (!playerscoreDrawn) {
             ctx.fillStyle = "yellow";
