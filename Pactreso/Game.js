@@ -133,13 +133,12 @@ class GameHandler {
                 continue;
             }
             ctx.fillText(scoreboard[i - playerscoreDrawn].username + " : " + scoreboard[i - playerscoreDrawn].score, this.canvas.width / 2, this.canvas.height / 4 + (i + 1) * 30);
-            if (i > 9) break; // only draw top 10 scores
         }
         if (!playerscoreDrawn) {
             ctx.fillStyle = "yellow";
             let username = getUsernameInput().value || "???";
             let score = Math.floor(this.score);
-            ctx.fillText(username + " : " + score, this.canvas.width / 2, this.canvas.height / 4 + (scoreboard.length + 2) * 30);
+            ctx.fillText(username + " : " + score, this.canvas.width / 2, this.canvas.height / 4 + (10 + 2) * 30);
         }
 
         ctx.fillText("Appuyez sur une touche pour recommencer", this.canvas.width / 2, this.canvas.height * 3 / 4);
