@@ -37,9 +37,10 @@ body {
 
 #usernameInput {
     position: fixed;
-    top: 10%;
-    transform: translate(-50%, -100%);
-
+    top: 0px;
+    transform: translate(-50%, 0);
+    height: 7.5%;
+    /* width: 80vw; */
 }
 
 canvas {
