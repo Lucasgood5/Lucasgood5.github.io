@@ -3643,7 +3643,7 @@ AllLevels.set(7, {
     ]
 })
 
-AllLevels.set(1, {
+AllLevels.set(8, {
     "lvlHeight": 25,
     "lvlWidth": 25,
     "WallMap": [
